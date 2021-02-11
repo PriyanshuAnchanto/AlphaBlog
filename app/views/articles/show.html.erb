@@ -1,0 +1,26 @@
+<div class = "show-page"  id = "page-content">
+    <h1>Article</h1>
+
+    <div class="card card_container">
+        <div class="card-header text-muted">
+            <%= gravatar_for @article.user %>
+            <p><%= link_to @article.user.name,user_path(@article.user),  class: "badge badge-pill badge-primary" %></p>
+            <%  if @article.categories.any? %>
+               <div class = "mt-1"><%= render @article.categories %></div>
+            <% end%>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><%=@article.title%></h5>
+            <p class="card-text"><%=@article.description%></p>
+            <% if current_user && ( current_user == @article.user || current_user.admin? ) %>
+                <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-primary" %>
+                <%= link_to 'Delete', article_path(@article),method: :delete, data: {confirm: "Are you Sure ?" },class: "btn btn-primary" %>
+            <% end %>
+        </div>
+        <div class="card-footer text-muted">
+            <span>Created </span><%=time_ago_in_words(@article.created_at)%> ago |
+            <span> Updated </span><%=time_ago_in_words(@article.updated_at)%> ago
+        </div>
+    </div>
+</div>
+

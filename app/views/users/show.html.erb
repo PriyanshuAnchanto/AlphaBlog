@@ -1,0 +1,27 @@
+<div class = "show-page"  id = "page-content">
+    <h1>User Info</h1>
+        <div class="card card_container" style="width: 18rem;">
+            <%= gravatar_for @user %>
+            <div class="card-body">
+                <h5 class="card-title"><%=@user.name%></h5>
+                <p class="card-text"><%=@user.email%></p>
+                <% if current_user && ( current_user == @user || current_user.admin? )%>
+                    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
+                    <%= link_to 'Delete', user_path(@user),method: :delete, data: {confirm: "Are you Sure ?" },class: "btn btn-primary" %>
+                <% end %>
+            </div>
+        </div>
+   
+    <h1 id = "article_heading">Articles</h1>
+
+    <div class="apple_pagination">
+        <%= will_paginate @articles, :container => false %>
+    </div>
+    <%= render 'articles/article' %>
+    <div class="apple_pagination mb-4">
+        <%= will_paginate @articles, :container => false %>
+    </div> 
+
+</div>
+
+

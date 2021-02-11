@@ -1,0 +1,15 @@
+<div id = "page-content" class = "text-center">
+    <h1>Category: <%= @category.name %></h1>
+    <% if logged_in? && current_user.admin? %>
+        <%=link_to 'Edit Category',edit_category_path(@category), class: "btn btn-primary" %>
+    <%end%>
+    <h2 class = "m-5 text-center">Articles</h2>
+
+    <div class="apple_pagination">
+        <%= will_paginate @articles, :container => false %>
+    </div>
+    <%= render 'articles/article' %>
+    <div class="apple_pagination mb-4">
+        <%= will_paginate @articles, :container => false %>
+    </div> 
+</div>

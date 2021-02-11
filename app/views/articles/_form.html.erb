@@ -1,0 +1,27 @@
+<%= render 'shared/error', obj: @article %>
+
+<div class="card card_container">
+  <div class="card-header">
+    
+  </div>
+  <div class="card-body">
+    <%= form_with(model: @article, local: true) do |f| %>
+      <div class="mb-3">
+        <strong><%= f.label :title, class: "form-label" %></strong><br/> 
+        <%= f.text_field :title, class: "form-control", id: "form-title"  %>
+      </div>
+      <div class="mb-3">
+        <strong><%= f.label :description, class: "form-label" %><strong><br/> 
+        <%= f.text_area :description, class: "form-control",rows: 7, id: "form-description"%> 
+      </div>
+      <div class="mb-3">
+        <strong><%= f.label :category, class: "form-label" %><strong><br/> 
+        <%= f.collection_select(:category_ids, Category.all, :id, :name,
+            { prompt: "Select Categories "}, { multiple: true, size: 3, class: "custom-select" }) %>
+        
+      </div> 
+        <%= f.submit class: "btn btn-primary"%> 
+        <%= link_to 'Cancel', articles_path, class: "btn btn-danger"%>
+    <% end %>
+  </div>
+</div>

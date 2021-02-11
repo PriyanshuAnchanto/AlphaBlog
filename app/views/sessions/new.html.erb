@@ -1,0 +1,22 @@
+<div  id = "page-content">
+<h1> Log In </h1>
+  <div class="card card_container" >
+    <div class="card-header">
+      
+    </div>
+    <div class="card-body">
+      <%= form_with(scope: :session,url: login_path, local: true) do |f| %>
+        <div class="mb-3">
+          <strong><%= f.label :email, class: "form-label" %></strong><br/> 
+          <%= f.email_field :email, class: "form-control", id: "form-title"  %>
+        </div>
+        <div class="mb-3">
+          <strong><%= f.label :password, class: "form-label" %><strong><br/> 
+          <%= f.password_field :password, class: "form-control",rows: 9, id: "form-description"%> 
+        </div> 
+          <%= f.submit "Log In", class: "btn btn-primary"%> 
+          <%= link_to 'Cancel', articles_path, class: "btn btn-danger"%>
+      <% end %>
+    </div>
+  </div>
+</div>

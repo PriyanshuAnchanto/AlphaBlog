@@ -1,0 +1,32 @@
+
+<h1>Users Info</h1>
+<div  id = "page-content">
+    <div class="apple_pagination">
+        <%= will_paginate @users, :container => false %>
+    </div>
+    <div class = "container">
+        <div class="d-flex flex-wrap" id = "user_container">
+            <% @users.each do |user| %>
+                
+                <div class="card" id="users_card" style="width: 18rem;">
+                    <%= gravatar_for user %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%=user.name%></h5>
+                        <p class="card-text"><%=user.email%></p>
+                        <p class="card-text"><%= pluralize(user.articles.length,'article')%></p>
+                        <%= link_to 'Show Profile', user_path(user), class: "btn btn-primary" %>
+                        
+                    </div>
+                    <div class="card-footer font-italic text-muted">
+                        <span> Joined </span><%=time_ago_in_words(user.created_at)%> ago
+                    </div>
+                </div>
+                
+            <%end%>
+        </div>
+    </div>
+
+    <div class="apple_pagination mb-4">
+        <%= will_paginate @users, :container => false %>
+    </div> 
+</div>

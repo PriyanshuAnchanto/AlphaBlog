@@ -1,0 +1,30 @@
+
+
+<h1>Categories</h1>
+<div  id = "page-content">
+    <div class="apple_pagination">
+        <%= will_paginate @categories, :container => false %>
+    </div>
+    <div class = "container">
+        <div class="d-flex flex-wrap" id = "user_container">
+            <% @categories.each do |category| %>
+            
+                <div class="card text-center" id="users_card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= link_to category.name,category_path(category)%></h5>
+                            <p><%= pluralize(category.articles.size,'Article')%> </p>
+
+                    </div>
+                    <div class="card-footer font-italic text-muted">
+                        <span> Created </span><%=time_ago_in_words(category.created_at)%> ago
+                    </div>
+                </div>
+                
+            <%end%>
+        </div>
+    </div>
+
+    <div class="apple_pagination mb-4">
+        <%= will_paginate @categories, :container => false %>
+    </div> 
+</div>
