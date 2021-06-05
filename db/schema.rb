@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_170839) do
+ActiveRecord::Schema.define(version: 2021_04_27_082118) do
 
   create_table "article_categories", force: :cascade do |t|
     t.integer "article_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2021_02_09_170839) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+  end
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -43,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_170839) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.string "log"
   end
 
 end

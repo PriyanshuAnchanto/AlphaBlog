@@ -20,6 +20,9 @@ class ArticlesController < ApplicationController
         @article = Article.new(set_params)
         @article.user = current_user
         if @article.save
+          log = "Article #{@article.id} Saved"
+          byebug
+          push_log(log)
           flash[:notice] = "Article created Successfully!"
           redirect_to @article
         else
@@ -39,12 +42,20 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
+        log = "Article #{@article.id} Deleted"
+        push_log(log)
         @article.destroy
         flash[:notice] = "Article deleted Successfully!"
         redirect_to articles_path
     end
 
     private
+    def push_log(log)
+      logs = log + "\n"
+      logs << current_user.log
+      User.find(current_user.id).update_column(:log,logs)
+      byebug
+    end
 
     def set_article
         @article = Article.find(params[:id])

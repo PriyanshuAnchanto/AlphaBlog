@@ -46,6 +46,10 @@ class UsersController < ApplicationController
         redirect_to root_path
     end
 
+    def log
+        byebug
+        send_data current_user.log, :filename => 'OrderLog.txt'
+    end
     private
 
     def set_params

@@ -15,6 +15,7 @@
                         <p class="card-text"><%=user.email%></p>
                         <p class="card-text"><%= pluralize(user.articles.length,'article')%></p>
                         <%= link_to 'Show Profile', user_path(user), class: "btn btn-primary" %>
+                        <%= link_to 'Logs', log_path, class: "btn btn-primary" %>
                         
                     </div>
                     <div class="card-footer font-italic text-muted">
